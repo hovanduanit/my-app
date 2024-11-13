@@ -1,11 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
+import Toggle from './components/toggle/Toggle';
 
 function App() {
   return (
-    <div className="App">
-      hello
-    </div>
+    <Toggle></Toggle>
   );
 }
 
