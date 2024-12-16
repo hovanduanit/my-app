@@ -70,4 +70,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 docker run -it --name node-23-alpine -v $(pwd):/app --network my-network -p 3000:3000 -d node:23-alpine
+
+docker run -it --name node-23-alpine -v /mnt/d/sadlier/fe/my-app:/app --network my-network -p 3001:3001 -d node:23-alpine
+
+
+172.19.43.134
 # my-app
