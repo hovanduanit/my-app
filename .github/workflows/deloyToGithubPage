@@ -1,0 +1,45 @@
+name: Deploy Node.js to GitHub Pages
+
+on:
+  push:
+    branches:
+      - prod  # Chạy workflow khi có push lên nhánh `main`
+  workflow_dispatch: # Cho phép chạy thủ công từ Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clone mã nguồn từ repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Cài đặt Node.js và npm
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18 # Thay bằng phiên bản Node.js bạn sử dụng
+
+      # Cài đặt dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Build dự án (output sẽ được lưu trong thư mục `dist` hoặc cấu hình khác)
+      - name: Build project
+        run: npm run build
+
+      # Upload kết quả build (file tĩnh) để deploy
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist # Thư mục chứa kết quả build (thay đổi nếu khác)
+
+      # Deploy lên GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
